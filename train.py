@@ -142,15 +142,22 @@ adj2 = sparse_mx_to_torch_sparse_tensor(adj).coalesce().to(device)
 deg = sp.coo_matrix.sum(adj, axis=1)
 deg = torch.tensor(deg)
 deg = deg.to(device)
+n = data.num_nodes  # use this, not data.x.shape[0]
 
-adj = sp.coo_matrix((np.ones(data.edge_index.shape[1]), (data.edge_index.cpu()[0, :], data.edge_index.cpu()[1, :])),
-                    shape=(data.y.shape[0], data.y.shape[0]), dtype=np.float32)
+adj = sp.coo_matrix(
+    (np.ones(data.edge_index.shape[1]),
+     (data.edge_index.cpu()[0, :], data.edge_index.cpu()[1, :])),
+    shape=(n, n)  # ← always correct
+)
 adj = sparse_mx_to_torch_sparse_tensor(adj).coalesce().to(device)
 adj_lists = defaultdict(set)
 for i in range(data.edge_index.size(1)):
     adj_lists[data.edge_index[0][i].item()].add(data.edge_index[1][i].item())
 
-
+print("DATASET SHAPE : ")
+print(len(dataset))
+print(config['num_train_per_class'])
+print(config['num_development'])
 idx_train, idx_val, idx_test = dataset.random_split(
     num_train_per_class=config['num_train_per_class'],
     num_development=config['num_development'],
@@ -158,6 +165,8 @@ idx_train, idx_val, idx_test = dataset.random_split(
 )
 
 model = Model(num_features, num_hidden, drop, dropout_mlp, gate, activation)
+total_params = sum(p.numel() for p in model.parameters())
+print(f"Model total parameters: {total_params:,}")
 model = model.to(device)
 
 loss_function = losses.build_loss(args.loss_fn, tau=tau)

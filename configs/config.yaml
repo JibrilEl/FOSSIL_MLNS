@@ -102,6 +102,33 @@ coauthor_cs:
   tau: 0.2
   wd_mlp: 0.0005
   weight_decay: 0.0005
+
+coauthor_phy:
+  activation: prelu
+  alpha: 0.5
+  base_model: GCNConv
+  beta2: 1
+  beta3: 10.0
+  drop: 0.1
+  dropout_mlp: 0.4
+  gate: 30
+  homo: 0.5
+  k1: 24
+  lr: 0.0001
+  lr_mlp: 0.0001
+  num: 300
+  num_development: 4000   # ← was 1
+  num_epochs: 300
+  num_hidden: 512
+  num_proj_hidden: 512
+  num_test: 30493         # ← was 1  (= 34493 - 4000)
+  num_train_per_class: 20 # ← was 1  (20 × 5 classes = 100 train nodes)
+  num_val: 3900           # ← was 1  (= 4000 - 100)
+  reg: 1
+  seed: 42
+  tau: 0.2
+  wd_mlp: 0.0005
+  weight_decay: 0.0005
 cora:
   activation: relu
   alpha: 0.5 # 0.1
@@ -232,3 +259,139 @@ ogbn-proteins:
   tau: 0.5
   wd_mlp: 0.0005
   weight_decay: 0.0005
+proteins:
+  activation: relu
+  alpha: 0.5 # 0.1
+  base_model: GCNConv
+  beta2: 1
+  beta3: 1000000.0
+  drop: 0.3
+  dropout_mlp: 0.3
+  gate: 30
+  homo: 0.6
+  k1: 12
+  lr: 0.0005
+  lr_mlp: 0.01
+  num: 40
+  num_development: 700
+  num_val: 280
+  num_test: 413      
+  num_epochs: 400
+  num_hidden: 128
+  num_proj_hidden: 128
+  num_train_per_class: 20
+  reg: 0.5
+  seed: 39788
+  tau: 0.8
+  wd_mlp: 0.0005
+  weight_decay: 0.0005
+
+wikics:
+  activation: relu
+  alpha: 0.5 # 0.1
+  base_model: GCNConv
+  beta2: 1
+  beta3: 1000000.0
+  drop: 0.3
+  dropout_mlp: 0.3
+  gate: 30
+  homo: 0.6
+  k1: 12
+  lr_mlp: 0.01
+  reg: 0.5
+  seed: 39788
+  tau: 0.8
+  wd_mlp: 0.0005
+  weight_decay: 0.0005
+
+  num_development: 9000
+  num_test: 2701
+  num_train_per_class: 20
+  seed: 42
+  lr: 0.0005
+  num_hidden: 512
+  num_epochs: 300
+  num: 300
+  num_hidden: 16
+  num_proj_hidden : 16
+
+amazon_computers:
+  activation: relu
+  alpha: 0.5 # 0.1
+  base_model: GCNConv
+  beta2: 1
+  beta3: 1000000.0
+  drop: 0.3
+  dropout_mlp: 0.3
+  gate: 30
+  homo: 0.6
+  k1: 12
+  lr_mlp: 0.01
+  reg: 0.5
+  seed: 39788
+  tau: 0.8
+  wd_mlp: 0.0005
+  weight_decay: 0.0005
+  num_development: 1000
+  num_test: 2000
+  num_train_per_class: 20
+  seed: 42
+  lr: 0.0005
+  num_epochs: 300
+  num: 300
+  num_hidden: 128
+  num_proj_hidden : 128
+
+amazon_photo:
+  activation: relu
+  alpha: 0.5 # 0.1
+  base_model: GCNConv
+  beta2: 1
+  beta3: 1000000.0
+  drop: 0.3
+  dropout_mlp: 0.3
+  gate: 30
+  homo: 0.6
+  k1: 12
+  lr_mlp: 0.01
+  reg: 0.5
+  seed: 39788
+  tau: 0.8
+  wd_mlp: 0.0005
+  weight_decay: 0.0005
+  num_development: 1000
+  num_test: 2000
+  num_train_per_class: 20
+  seed: 42
+  lr: 0.0005
+  num_epochs: 300
+  num: 300
+  num_hidden: 128
+  num_proj_hidden : 128
+
+roman-empire:
+  activation: relu
+  alpha: 0.5 # 0.1
+  base_model: GCNConv
+  beta2: 1
+  beta3: 1000000.0
+  drop: 0.3
+  dropout_mlp: 0.3
+  gate: 30
+  homo: 0.6
+  k1: 12
+  lr_mlp: 0.01
+  reg: 0.5
+  seed: 39788
+  tau: 0.8
+  wd_mlp: 0.0005
+  weight_decay: 0.0005
+  num_development: 4000
+  num_test: 1000
+  num_train_per_class: 20
+  seed: 42
+  lr: 0.001
+  num_hidden: 32
+  num_proj_hidden : 32
+  num_epochs: 300
+  num: 10
